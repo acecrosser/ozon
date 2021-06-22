@@ -1,12 +1,22 @@
-from cursor import cursor
+from .cursor import cursor
+from main import HTTPException
 from datetime import datetime
+from pydantic import BaseModel
+from psycopg2.errors import UniqueViolation
 
 
-def put_url(ids: str, url: str):
-    cursor.execute(
-        "INSERT INTO short (token, url, date) "
-        f"({ids}, {url}, {datetime.now()}"
-    )
+class Item(BaseModel):
+    url: str
+
+
+def put_url(token: str, url: str):
+    try:
+        cursor.execute(
+            "INSERT INTO short (token, url, date) "
+            f"VALUES ('{token}', '{url}', '{datetime.now()}')"
+        )
+    except UniqueViolation as err:
+        pass
 
 
 def get_url(colum: str, type: str, key: str):
@@ -14,5 +24,7 @@ def get_url(colum: str, type: str, key: str):
         f"SELECT {colum} FROM short "
         f"WHERE {type} LIKE '{key}'"
     )
-    return cursor.fetchone()
-
+    item = cursor.fetchone()
+    if not item:
+        raise HTTPException(400, 'Link not found')
+    return item

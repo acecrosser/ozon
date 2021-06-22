@@ -12,7 +12,6 @@ def check_link(link:str) -> bool:
 
 def resize_link(link: str):
     long_link = urlparse(link)
-    # generator = [randint(1, 11) for x in range(1, 5)]
     hashids = Hashids(salt=f'{long_link.path}')
-    ids = hashids.encode(1, 3, 5, 7)
+    ids = hashids.encode(1, 3, 5, 7) # one ids per link
     return ids
