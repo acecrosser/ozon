@@ -1,0 +1,17 @@
+version: '2'
+services: 
+    short: 
+        build: .
+        ports:
+            - "8000:8000"
+        depends_on: 
+            - postgresql
+    postgres: 
+        build: 
+            context: .
+            dockerfile: Dockerfile-psql
+        environment:
+            POSTGRES_DB: shorturl
+            POSTGRES_PASSWORD: postgres
+        restart: always
+        
