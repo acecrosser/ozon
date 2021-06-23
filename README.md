@@ -1,3 +1,6 @@
+![python veriosn](https://img.shields.io/badge/python-3.7%2B-blue)
+![](https://img.shields.io/badge/test-task-red)
+
 ## Задание на стажировку
 -----------
 Запущенный прототип по адрeсу - http://short.dasnas.com
