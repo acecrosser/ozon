@@ -19,11 +19,12 @@ services:
         networks: 
             api_net:
                 ipv4_address: 172.28.1.4
-        restart: always
-    networks: 
-        api_net:
-            ipam: 
-                driver: pg_default
-                config: 
-                    - subnet: 172.28.0.0/16
-        
+                restart: always
+
+networks: 
+    api_net:
+        ipam: 
+            driver: pg_default
+            config: 
+                - subnet: 172.28.0.0/16
+    
