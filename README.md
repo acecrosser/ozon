@@ -2,7 +2,7 @@
 ![](https://img.shields.io/badge/test-task-red)
 
 ## Задание на стажировку
------------
+
 Запущенный прототип по адрeсу - http://short.dasnas.com
 
 Для запуска на локальном ПК воспользуйтесь инструкцией ниже (Docker-Compose):
