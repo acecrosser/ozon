@@ -6,13 +6,17 @@ services:
             - "8000:8000"
         depends_on: 
             - postgres
+        environment:
+            - POSTGRES_USER=postgres
+            - USE_DOCKER=yes
     postgres: 
         build: 
             context: .
             dockerfile: Dockerfile-psql
+        volumes:
+            - postgres_data_local:/var/lib/postgresql/data
+            - postgres_backup_local:/backups
         ports:
-            - "5432:5432"
+            - '5433:5432'
         environment:
-            POSTGRES_PASSWORD: postgres
-            POSTGRES_DB: shorturl
-        restart: always
+            POSTGRES_USER: postgres
