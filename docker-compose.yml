@@ -1,22 +1,17 @@
-version: '2'
-services: 
+version: '3.9'
+services:
+    postgres: 
+        build: 
+            context: .
+            dockerfile: Dockerfile-psql
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_DB=shorturl
+            - POSTGRES_PASSWORD=postgres
     short: 
         build: .
         ports:
             - "8000:8000"
         depends_on: 
             - postgres
-        environment:
-            - POSTGRES_USER=postgres
-            - USE_DOCKER=yes
-    postgres: 
-        build: 
-            context: .
-            dockerfile: Dockerfile-psql
-        volumes:
-            - postgres_data_local:/var/lib/postgresql/data
-            - postgres_backup_local:/backups
-        ports:
-            - '5433:5432'
-        environment:
-            POSTGRES_USER: postgres
+    
